@@ -1,4 +1,4 @@
-module Main exposing (Language(..), User(..), add, greet, greetInJa, message, output, sum)
+module Main exposing (Language(..), User(..), add, doubleFirstValue, greet, greetInJa, message, output, sum)
 
 
 type Language
@@ -59,3 +59,21 @@ sum n =
 
     else
         n + sum (n - 1)
+
+
+showFirstValue : List Int -> String
+showFirstValue list =
+    case List.head list of
+        Just value ->
+            String.fromInt value
+
+        Nothing ->
+            "Empty!"
+
+
+doubleFirstValue : List String -> Int
+doubleFirstValue list =
+    List.head list
+        |> Maybe.andThen String.toInt
+        |> Maybe.map (\n -> n * 2)
+        |> Maybe.withDefault 0
