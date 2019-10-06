@@ -1,4 +1,4 @@
-module Main exposing (Language(..), User(..), add, greet, greetInJa, message, output)
+module Main exposing (Language(..), User(..), add, greet, greetInJa, message, output, sum)
 
 
 type Language
@@ -50,3 +50,12 @@ message user =
 
         Guest ->
             "こんちは、ゲストさん"
+
+
+sum : Int -> Int
+sum n =
+    if n == 1 then
+        1
+
+    else
+        n + sum (n - 1)
