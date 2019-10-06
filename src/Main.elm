@@ -1,4 +1,6 @@
-module Main exposing (Language(..), User(..), add, doubleFirstValue, greet, greetInJa, message, output, sum, sumAll)
+module Main exposing (Language(..), User(..), add, countUniqueEven, doubleFirstValue, greet, greetInJa, message, output, sum, sumAll)
+
+import Set exposing (Set)
 
 
 type Language
@@ -82,3 +84,16 @@ doubleFirstValue list =
 sumAll : List number -> number
 sumAll list =
     List.foldl (\n acm -> n + acm) 0 list
+
+
+countUniqueEven : List Int -> Int
+countUniqueEven list =
+    list
+        |> List.filter isEven
+        |> Set.fromList
+        |> Set.size
+
+
+isEven : Int -> Bool
+isEven n =
+    remainderBy 2 n == 0
