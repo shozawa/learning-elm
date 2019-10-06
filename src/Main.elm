@@ -1,4 +1,4 @@
-module Main exposing (Language(..), User(..), add, doubleFirstValue, greet, greetInJa, message, output, sum)
+module Main exposing (Language(..), User(..), add, doubleFirstValue, greet, greetInJa, message, output, sum, sumAll)
 
 
 type Language
@@ -77,3 +77,8 @@ doubleFirstValue list =
         |> Maybe.andThen String.toInt
         |> Maybe.map (\n -> n * 2)
         |> Maybe.withDefault 0
+
+
+sumAll : List number -> number
+sumAll list =
+    List.foldl (\n acm -> n + acm) 0 list
