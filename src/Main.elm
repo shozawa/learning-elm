@@ -1,99 +1,18 @@
-module Main exposing (Language(..), User(..), add, countUniqueEven, doubleFirstValue, greet, greetInJa, message, output, sum, sumAll)
+module Main exposing (main)
 
-import Set exposing (Set)
-
-
-type Language
-    = En
-    | Ja
-    | Fr
+import Html exposing (Html, a, div, h1, li, text, ul)
+import Html.Attributes exposing (href)
 
 
-type User
-    = LoggedIn Bool String
-    | Guest
-
-
-output : String
-output =
-    "1 + 1 = " ++ String.fromInt (add 1 1)
-
-
-add : number -> number -> number
-add a b =
-    a + b
-
-
-greet : Language -> String
-greet lang =
-    case lang of
-        En ->
-            "hello"
-
-        Ja ->
-            "こんにちは"
-
-        Fr ->
-            "Bonjour"
-
-
-greetInJa =
-    greet Ja
-
-
-message : User -> String
-message user =
-    case user of
-        LoggedIn True name ->
-            "こんにちは、" ++ name ++ "（管理者）さん"
-
-        LoggedIn False name ->
-            "こんにちは、" ++ name ++ "さん"
-
-        Guest ->
-            "こんちは、ゲストさん"
-
-
-sum : Int -> Int
-sum n =
-    if n == 1 then
-        1
-
-    else
-        n + sum (n - 1)
-
-
-showFirstValue : List Int -> String
-showFirstValue list =
-    case List.head list of
-        Just value ->
-            String.fromInt value
-
-        Nothing ->
-            "Empty!"
-
-
-doubleFirstValue : List String -> Int
-doubleFirstValue list =
-    List.head list
-        |> Maybe.andThen String.toInt
-        |> Maybe.map (\n -> n * 2)
-        |> Maybe.withDefault 0
-
-
-sumAll : List number -> number
-sumAll list =
-    List.foldl (\n acm -> n + acm) 0 list
-
-
-countUniqueEven : List Int -> Int
-countUniqueEven list =
-    list
-        |> List.filter isEven
-        |> Set.fromList
-        |> Set.size
-
-
-isEven : Int -> Bool
-isEven n =
-    remainderBy 2 n == 0
+main : Html msg
+main =
+    div []
+        [ h1 []
+            [ text "Useful Links" ]
+        , ul
+            []
+            [ li [] [ a [ href "https://elm-lang.org" ] [ text "Homepage" ] ]
+            , li [] [ a [ href "https://package.elm-lang.org" ] [ text "Packages" ] ]
+            , li [] [ a [ href "https://ellie-app.com" ] [ text "Playground" ] ]
+            ]
+        ]
